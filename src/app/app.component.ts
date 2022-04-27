@@ -13,10 +13,7 @@ export class AppComponent {
   generalDataSource: ({ text: string, key: string } & Record<string, any>)[] = [
     {text: 'Version', key: 'version'},
     {text: 'Singularity', key: 'singularityCount'},
-    {text: 'Tesseracts on hand', key: 'wowTesseracts'},
-    {text: 'Hypercubes on hand', key: 'wowHypercubes'},
-    {text: 'Platonic cubes on hand', key: 'wowPlatonicCubes'},
-    {text: 'Hepteracts on hand', key: 'wowAbyssals'},
+    {text: 'Best C15', key: 'challenge15Exponent'},
     {text: 'Golden quarks', key: 'goldenQuarks'},
     {text: 'Overflux orbs', key: 'overfluxOrbs'},
     {text: 'Overflux powder', key: 'overfluxPowder'},
@@ -83,6 +80,30 @@ export class AppComponent {
     {text: 'Score bonus', key: 'scoreBonus'},
     {text: 'Taxes', key: 'taxes'},
     {text: 'Tesseracts', key: 'tesseracts'},
+  ]
+
+  platonicUpgradesDisplayColumns: string[] = ['key'];
+  platonicUpgradesDataSource: ({ text: string, key: string } & Record<string, any>)[] = [
+    {text: '1x1', key: '1x1'},
+    {text: '1x2', key: '1x2'},
+    {text: '1x3', key: '1x3'},
+    {text: '1x4', key: '1x4'},
+    {text: 'alpha', key: 'alpha'},
+    {text: '2x1', key: '2x1'},
+    {text: '2x2', key: '2x2'},
+    {text: '2x3', key: '2x3'},
+    {text: '2x4', key: '2x4'},
+    {text: 'beta', key: 'beta'},
+    {text: '3x1', key: '3x1'},
+    {text: '3x2', key: '3x2'},
+    {text: '3x3', key: '3x3'},
+    {text: '3x4', key: '3x4'},
+    {text: 'omega', key: 'omega'},
+    {text: '4x1', key: '4x1'},
+    {text: '4x2', key: '4x2'},
+    {text: '4x3', key: '4x3'},
+    {text: '4x4', key: '4x4'},
+    {text: '4x5', key: '4x5'},
   ]
 
 
@@ -157,6 +178,12 @@ export class AppComponent {
       if (item.key === 'totalOpened') {
         item[player] = this.sumObject(savedata['platonicBlessings']);
       }
+    });
+
+    // C15 / Platonic upgrades
+    this.platonicUpgradesDisplayColumns.push(player);
+    this.platonicUpgradesDataSource.forEach((item, index) => {
+      item[player] = savedata['platonicUpgrades'][index + 1];
     });
   }
 
