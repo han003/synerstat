@@ -71,6 +71,20 @@ export class AppComponent {
     {text: 'Talisman bonus', key: 'talismanBonus'},
   ]
 
+  platonicDisplayColumns: string[] = ['key'];
+  platonicDataSource: ({ text: string, key: string } & Record<string, any>)[] = [
+    {text: 'Platonics on hand', key: 'wowPlatonicCubes'},
+    {text: 'Platonics opened', key: 'totalOpened'},
+    {text: 'Cubes', key: 'cubes'},
+    {text: 'Global speed', key: 'globalSpeed'},
+    {text: 'HypercubeBonus', key: 'hypercubeBonus'},
+    {text: 'Hypercubes', key: 'hypercubes'},
+    {text: 'Platonics', key: 'platonics'},
+    {text: 'Score bonus', key: 'scoreBonus'},
+    {text: 'Taxes', key: 'taxes'},
+    {text: 'Tesseracts', key: 'tesseracts'},
+  ]
+
 
   import() {
     const savedata: Record<string, any> = JSON.parse(atob(this.savefile!));
@@ -129,6 +143,19 @@ export class AppComponent {
       }
       if (item.key === 'totalOpened') {
         item[player] = this.sumObject(savedata['hypercubeBlessings']);
+      }
+    });
+
+    // Platonics
+    this.platonicDisplayColumns.push(player);
+    this.platonicDataSource.forEach(item => {
+      item[player] = savedata['platonicBlessings'][item.key];
+
+      if (item.key === 'wowPlatonicCubes') {
+        item[player] = savedata[item.key];
+      }
+      if (item.key === 'totalOpened') {
+        item[player] = this.sumObject(savedata['platonicBlessings']);
       }
     });
   }

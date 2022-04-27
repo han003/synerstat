@@ -47,7 +47,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="cubeDisplayColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: cubeDisplayColumns;"></tr>
     </table>
   </mat-card-content>
 </mat-card>
@@ -71,7 +71,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="tesseractDisplayColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: tesseractDisplayColumns;"></tr>
     </table>
   </mat-card-content>
 </mat-card>
@@ -95,7 +95,31 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="hyperDisplayColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: hyperDisplayColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Platonic Statues</mat-card-title>
+  <mat-card-content>
+    <table mat-table [dataSource]="platonicDataSource">
+
+      <ng-container matColumnDef="key">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+      </ng-container>
+
+      <ng-container *ngFor="let player of players; let i = index" [matColumnDef]="player">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>{{player}}</span>
+          <!--          <mat-icon>edit</mat-icon>-->
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element[player]}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="platonicDisplayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: platonicDisplayColumns;"></tr>
     </table>
   </mat-card-content>
 </mat-card>
