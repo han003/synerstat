@@ -39,6 +39,38 @@ export class AppComponent {
     {text: 'Talisman bonus', key: 'talismanBonus'},
   ]
 
+  tesseractDisplayColumns: string[] = ['key'];
+  tesseractDataSource: ({ text: string, key: string } & Record<string, any>)[] = [
+    {text: 'Tesseracts on hand', key: 'wowTesseracts'},
+    {text: 'Tesseracts opened', key: 'totalOpened'},
+    {text: 'Accelerator', key: 'accelerator'},
+    {text: 'Ant ELO', key: 'antELO'},
+    {text: 'Ant sacrifice', key: 'antSacrifice'},
+    {text: 'Ant speed', key: 'antSpeed'},
+    {text: 'Global speed', key: 'globalSpeed'},
+    {text: 'Multiplier', key: 'multiplier'},
+    {text: 'Obtainium', key: 'obtainium'},
+    {text: 'Offering', key: 'offering'},
+    {text: 'Rune exp', key: 'runeExp'},
+    {text: 'Talisman bonus', key: 'talismanBonus'},
+  ]
+
+  hyperDisplayColumns: string[] = ['key'];
+  hyperDataSource: ({ text: string, key: string } & Record<string, any>)[] = [
+    {text: 'Hypercubes on hand', key: 'wowHypercubes'},
+    {text: 'Hypercubes opened', key: 'totalOpened'},
+    {text: 'Accelerator', key: 'accelerator'},
+    {text: 'Ant ELO', key: 'antELO'},
+    {text: 'Ant sacrifice', key: 'antSacrifice'},
+    {text: 'Ant speed', key: 'antSpeed'},
+    {text: 'Global speed', key: 'globalSpeed'},
+    {text: 'Multiplier', key: 'multiplier'},
+    {text: 'Obtainium', key: 'obtainium'},
+    {text: 'Offering', key: 'offering'},
+    {text: 'Rune exp', key: 'runeExp'},
+    {text: 'Talisman bonus', key: 'talismanBonus'},
+  ]
+
 
   import() {
     const savedata: Record<string, any> = JSON.parse(atob(this.savefile!));
@@ -70,11 +102,41 @@ export class AppComponent {
         item[player] = savedata[item.key];
       }
       if (item.key === 'totalOpened') {
-        item[player] = Object.values<number>(savedata['cubeBlessings']).reduce((sum: number, val: number) => {
-          return sum + val;
-        }, 0);
+        item[player] = this.sumObject(savedata['cubeBlessings']);
       }
     });
+
+    // Tesseracts
+    this.tesseractDisplayColumns.push(player);
+    this.tesseractDataSource.forEach(item => {
+      item[player] = savedata['tesseractBlessings'][item.key];
+
+      if (item.key === 'wowTesseracts') {
+        item[player] = savedata[item.key];
+      }
+      if (item.key === 'totalOpened') {
+        item[player] = this.sumObject(savedata['tesseractBlessings']);
+      }
+    });
+
+    // Hypercubes
+    this.hyperDisplayColumns.push(player);
+    this.hyperDataSource.forEach(item => {
+      item[player] = savedata['hypercubeBlessings'][item.key];
+
+      if (item.key === 'wowHypercubes') {
+        item[player] = savedata[item.key];
+      }
+      if (item.key === 'totalOpened') {
+        item[player] = this.sumObject(savedata['hypercubeBlessings']);
+      }
+    });
+  }
+
+  sumObject(object: Record<string, number>) {
+    return Object.values<number>(object).reduce((sum: number, val: number) => {
+      return sum + val;
+    }, 0)
   }
 
   changeName(index: number) {

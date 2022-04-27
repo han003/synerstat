@@ -29,7 +29,7 @@
 </mat-card>
 
 <mat-card>
-  <mat-card-title>Cube tributes</mat-card-title>
+  <mat-card-title>Cube Tributes</mat-card-title>
   <mat-card-content>
     <table mat-table [dataSource]="cubeDataSource">
 
@@ -47,6 +47,54 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="cubeDisplayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Tesseract Gifts</mat-card-title>
+  <mat-card-content>
+    <table mat-table [dataSource]="tesseractDataSource">
+
+      <ng-container matColumnDef="key">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+      </ng-container>
+
+      <ng-container *ngFor="let player of players; let i = index" [matColumnDef]="player">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>{{player}}</span>
+          <!--          <mat-icon>edit</mat-icon>-->
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element[player]}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="tesseractDisplayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Hypercube Benedictions</mat-card-title>
+  <mat-card-content>
+    <table mat-table [dataSource]="hyperDataSource">
+
+      <ng-container matColumnDef="key">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+      </ng-container>
+
+      <ng-container *ngFor="let player of players; let i = index" [matColumnDef]="player">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>{{player}}</span>
+          <!--          <mat-icon>edit</mat-icon>-->
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element[player]}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="hyperDisplayColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
     </table>
   </mat-card-content>
