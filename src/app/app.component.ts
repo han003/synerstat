@@ -13,11 +13,19 @@ export class AppComponent {
   generalDataSource: ({ text: string, key: string } & Record<string, any>)[] = [
     {text: 'Version', key: 'version'},
     {text: 'Singularity', key: 'singularityCount'},
+    {text: 'Achievements', key: 'achievements'},
+    {text: 'Cubes', key: 'cubes'},
+    {text: 'Tesseracts', key: 'tesseracts'},
+    {text: 'Hypercubes', key: 'hypercubes'},
+    {text: 'Platonic cubes', key: 'platonics'},
+    {text: 'Hepteracts', key: 'hepteracts'},
+    {text: 'r8x25', key: 'r8x25'},
+    {text: 'w5x10', key: 'w5x10'},
+    {text: 'Infinite Ascent', key: 'infiniteAscent'},
     {text: 'Best C15', key: 'challenge15Exponent'},
     {text: 'Golden quarks', key: 'goldenQuarks'},
     {text: 'Overflux orbs', key: 'overfluxOrbs'},
     {text: 'Overflux powder', key: 'overfluxPowder'},
-    {text: 'RNG code', key: 'rngCode'},
   ];
 
   cubeDisplayColumns: string[] = ['key'];
@@ -126,6 +134,34 @@ export class AppComponent {
     this.generalDisplayColumns.push(player);
     this.generalDataSource.forEach(item => {
       item[player] = savedata[item.key];
+
+      if (item.key === 'cubes') {
+        item[player] = this.sumObject(savedata['cubeBlessings']);
+      }
+      if (item.key === 'tesseracts') {
+        item[player] = this.sumObject(savedata['tesseractBlessings']);
+      }
+      if (item.key === 'hypercubes') {
+        item[player] = this.sumObject(savedata['hypercubeBlessings']);
+      }
+      if (item.key === 'platonics') {
+        item[player] = this.sumObject(savedata['platonicBlessings']);
+      }
+      if (item.key === 'hepteracts') {
+        item[player] = savedata['wowAbyssals'];
+      }
+      if (item.key === 'r8x25') {
+        item[player] = savedata['researches'][200];
+      }
+      if (item.key === 'w5x10') {
+        item[player] = savedata['cubeUpgrades'][50];
+      }
+      if (item.key === 'infiniteAscent') {
+        item[player] = savedata['runelevels'][5];
+      }
+      if (item.key === 'achievements') {
+        item[player] = savedata['achievements'].filter((a: number) => a === 1).length;
+      }
     });
 
     // Cubes
