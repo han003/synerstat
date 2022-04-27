@@ -11,23 +11,25 @@ import {FlexModule} from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    FlexModule,
-    MatButtonModule,
-    MatCardModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        FlexModule,
+        MatButtonModule,
+        MatCardModule,
+        MatTableModule,
+        MatIconModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

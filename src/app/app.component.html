@@ -17,13 +17,13 @@
         <td mat-cell *matCellDef="let element"> {{element.text}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="player1">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.player1}} </td>
+      <ng-container *ngFor="let player of players" [matColumnDef]="player">
+        <th mat-header-cell *matHeaderCellDef>{{player}}</th>
+        <td mat-cell *matCellDef="let element"> {{element[player]}} </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-header-row *matHeaderRowDef="generalDisplayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
     </table>
   </mat-card-content>
 </mat-card>
@@ -31,20 +31,23 @@
 <mat-card>
   <mat-card-title>Cube tributes</mat-card-title>
   <mat-card-content>
-    <table mat-table [dataSource]="generalDataSource">
+    <table mat-table [dataSource]="cubeDataSource">
 
       <ng-container matColumnDef="key">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element"> {{element.text}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="player1">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.player1}} </td>
+      <ng-container *ngFor="let player of players; let i = index" [matColumnDef]="player">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>{{player}}</span>
+<!--          <mat-icon>edit</mat-icon>-->
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element[player]}} </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-header-row *matHeaderRowDef="cubeDisplayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
     </table>
   </mat-card-content>
 </mat-card>
