@@ -18,13 +18,23 @@ export class NumericPipe implements PipeTransform {
   });
 
   transform(value: unknown): unknown {
-    if (typeof value === 'string') return value;
+    if (typeof value === 'string') {
+      if (!value.includes('e+')) return value;
+
+      let [number, exponent] = value.split('e+');
+      let decimals = number.slice(number.indexOf('.') + 1).length;
+      let big = number.replace('.', '') + '0'.repeat(parseInt(exponent) - decimals);
+      return this.format(BigInt(big));
+    }
+
     if (Number.isNaN(value)) return value;
 
-    let number = Math.floor(value as number);
+    return this.format(BigInt(Math.floor(value as number)));
+  }
 
-    if (number < 1e6) return this.smallFormatter.format(number);
-    if (number < 1e15) return this.mediumFormatter.format(number);
+  private format(number: bigint) {
+    if (number < BigInt(1e6)) return this.smallFormatter.format(number);
+    if (number < BigInt(1e15)) return this.mediumFormatter.format(number);
 
     return this.bigFormatter.format(number);
   }

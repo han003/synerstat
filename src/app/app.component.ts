@@ -17,6 +17,7 @@ export class AppComponent {
     {text: 'r8x25', key: 'r8x25'},
     {text: 'w5x10', key: 'w5x10'},
     {text: 'Infinite Ascent', key: 'infiniteAscent'},
+    {text: 'Constant', key: 'ascendShards'},
     {text: 'Best C15', key: 'challenge15Exponent'},
     {text: 'Golden quarks', key: 'goldenQuarks'},
     {text: 'Overflux orbs', key: 'overfluxOrbs'},
