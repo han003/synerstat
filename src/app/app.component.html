@@ -4,7 +4,10 @@
     <textarea matInput [(ngModel)]="savefile"></textarea>
   </mat-form-field>
 
-  <button id="import-button" mat-raised-button color="primary" [disabled]="!savefile" (click)="import()">Import</button>
+  <button id="import-button" mat-raised-button color="primary" [disabled]="!savefile" (click)="import()">
+    <span *ngIf="!players.length">Import</span>
+    <span *ngIf="players.length">Import comparison</span>
+  </button>
 </div>
 
 <mat-card>
