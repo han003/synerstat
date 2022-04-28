@@ -14,6 +14,8 @@ export class AppComponent {
     {text: 'Version', key: 'version'},
     {text: 'Singularity', key: 'singularityCount'},
     {text: 'Achievements', key: 'achievements'},
+    {text: 'Avg. blessing', key: 'avgBlessing'},
+    {text: 'Avg. spirit', key: 'avgSpirit'},
     {text: 'r8x25', key: 'r8x25'},
     {text: 'w5x10', key: 'w5x10'},
     {text: 'Infinite Ascent', key: 'infiniteAscent'},
@@ -93,6 +95,12 @@ export class AppComponent {
       }
       if (item.key === 'achievements') {
         item[player] = savedata['achievements'].filter((a: number) => a === 1).length;
+      }
+      if (item.key === 'avgBlessing') {
+        item[player] = this.sumObject(savedata['runeBlessingLevels']) / 5;
+      }
+      if (item.key === 'avgSpirit') {
+        item[player] = this.sumObject(savedata['runeSpiritLevels']) / 5;
       }
     });
 
