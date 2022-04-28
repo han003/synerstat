@@ -12,10 +12,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import { NumericPipe } from './pipes/numeric.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NumericPipe
   ],
     imports: [
         BrowserModule,
