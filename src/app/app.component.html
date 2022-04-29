@@ -10,7 +10,7 @@
       <span *ngIf="players.length">Import comparison</span>
     </button>
 
-    <button id="share-button" *ngIf="hostSave" mat-raised-button [cdkCopyToClipboard]="shareLink" color="primary">Copy link</button>
+    <button id="share-button" *ngIf="hostSave" mat-raised-button [cdkCopyToClipboard]="shareLink" color="primary" (click)="linkCopied()">Copy link</button>
   </div>
 </div>
 

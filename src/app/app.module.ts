@@ -14,6 +14,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import { NumericPipe } from './pipes/numeric.pipe';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     MatTableModule,
     MatIconModule,
     ClipboardModule,
-    GridModule
+    GridModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
