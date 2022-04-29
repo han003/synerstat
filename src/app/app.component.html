@@ -1,13 +1,17 @@
 <div id="top">
   <mat-form-field fxFlex="25" appearance="outline">
     <mat-label>Savefile</mat-label>
-    <textarea matInput [(ngModel)]="savefile"></textarea>
+    <textarea matInput [(ngModel)]="saveImport"></textarea>
   </mat-form-field>
 
-  <button id="import-button" mat-raised-button color="primary" [disabled]="!savefile" (click)="import()">
-    <span *ngIf="!players.length">Import</span>
-    <span *ngIf="players.length">Import comparison</span>
-  </button>
+  <div gdColumns="auto auto" gdGap="8px">
+    <button id="import-button" mat-raised-button color="primary" [disabled]="!saveImport" (click)="import()">
+      <span *ngIf="!players.length">Import</span>
+      <span *ngIf="players.length">Import comparison</span>
+    </button>
+
+    <button id="share-button" *ngIf="hostSave" mat-raised-button [cdkCopyToClipboard]="shareLink" color="primary">Copy link</button>
+  </div>
 </div>
 
 <mat-card>
