@@ -18,6 +18,9 @@ export class NumericPipe implements PipeTransform {
   });
 
   transform(value: unknown): unknown {
+    console.log(`value`, value);
+    if (value == null) return '';
+
     if (typeof value === 'string') {
       if (!value.includes('e+')) return value;
 
