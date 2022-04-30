@@ -17,7 +17,7 @@ export class NumericPipe implements PipeTransform {
     maximumFractionDigits: 2,
   });
 
-  transform(value: unknown): unknown {
+  transform(value?: unknown, numberNotation = false): string {
     if (value == null) return '';
 
     if (typeof value === 'string') {
@@ -26,17 +26,17 @@ export class NumericPipe implements PipeTransform {
       let [number, exponent] = value.split('e+');
       let decimals = number.slice(number.indexOf('.') + 1).length;
       let big = number.replace('.', '') + '0'.repeat(parseInt(exponent) - decimals);
-      return this.format(BigInt(big));
+      return this.format(BigInt(big), numberNotation);
     }
 
-    if (Number.isNaN(value)) return value;
+    if (Number.isNaN(value)) return '';
 
-    return this.format(BigInt(Math.floor(value as number)));
+    return this.format(BigInt(Math.floor(value as number)), numberNotation);
   }
 
-  private format(number: bigint) {
-    if (number < BigInt(1e6)) return this.smallFormatter.format(number);
-    if (number < BigInt(1e15)) return this.mediumFormatter.format(number);
+  private format(number: bigint, numberNotation: boolean) {
+    if (number < BigInt(1e9)) return this.smallFormatter.format(number);
+    if (!numberNotation && number < BigInt(1e15)) return this.mediumFormatter.format(number);
 
     return this.bigFormatter.format(number);
   }

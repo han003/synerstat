@@ -10,11 +10,11 @@
       <span *ngIf="players.length">Import comparison</span>
     </button>
 
-    <button id="share-button" *ngIf="hostSave" mat-raised-button [cdkCopyToClipboard]="shareLink" color="primary" (click)="linkCopied()">Copy link</button>
+    <button id="share-button" *ngIf="hostSavedata" mat-raised-button [cdkCopyToClipboard]="shareLink" color="primary" (click)="linkCopied()">Copy link</button>
   </div>
 </div>
 
-<mat-tab-group mat-align-tabs="center">
+<mat-tab-group mat-align-tabs="center" selectedIndex="1">
   <mat-tab label="Statistics">
     <div id="stats-container" gdColumns="repeat(12, 1fr)" gdGap="12px">
       <mat-card gdColumn="1 / -1" gdColumn.gt-sm="2 / -2" gdColumn.gt-md="3 / -3">
@@ -87,6 +87,8 @@
       </mat-card>
     </div>
   </mat-tab>
-  <mat-tab label="Forge">Forge</mat-tab>
+  <mat-tab label="Forge">
+    <app-forge *ngIf="hostSavedata" [hostSavedata]="hostSavedata"></app-forge>
+  </mat-tab>
   <mat-tab label="TBA">TBA</mat-tab>
 </mat-tab-group>
