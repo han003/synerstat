@@ -14,71 +14,79 @@
   </div>
 </div>
 
-<mat-card>
-  <mat-card-title>General information</mat-card-title>
-  <mat-card-content>
-    <table mat-table [dataSource]="generalDataSource">
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Statistics">
+    <div id="stats-container" gdColumns="repeat(12, 1fr)" gdGap="12px">
+      <mat-card gdColumn="1 / -1" gdColumn.gt-sm="2 / -2" gdColumn.gt-md="3 / -3">
+        <mat-card-title>General information</mat-card-title>
+        <mat-card-content>
+          <table mat-table [dataSource]="generalDataSource">
 
-      <ng-container matColumnDef="key">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"> {{element.text}} </td>
-      </ng-container>
+            <ng-container matColumnDef="key">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+            </ng-container>
 
-      <ng-container *ngFor="let player of players" [matColumnDef]="player">
-        <th mat-header-cell *matHeaderCellDef>{{player}}</th>
-        <td mat-cell *matCellDef="let element"> {{element[player] | numeric}} </td>
-      </ng-container>
+            <ng-container *ngFor="let player of players" [matColumnDef]="player">
+              <th mat-header-cell *matHeaderCellDef>{{player}}</th>
+              <td mat-cell *matCellDef="let element"> {{element[player] | numeric}} </td>
+            </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="generalDisplayColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
-    </table>
-  </mat-card-content>
-</mat-card>
+            <tr mat-header-row *matHeaderRowDef="generalDisplayColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: generalDisplayColumns;"></tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
 
-<mat-card>
-  <mat-card-title>Cubes</mat-card-title>
-  <mat-card-content>
-    <table mat-table [dataSource]="cubesDataSource">
+      <mat-card gdColumn="1 / -1" gdColumn.gt-sm="2 / -2" gdColumn.gt-md="3 / -3">
+        <mat-card-title>Cubes</mat-card-title>
+        <mat-card-content>
+          <table mat-table [dataSource]="cubesDataSource">
 
-      <ng-container matColumnDef="key">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"> {{element.text}} </td>
-      </ng-container>
+            <ng-container matColumnDef="key">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+            </ng-container>
 
-      <ng-container *ngFor="let player of players; let i = index" [matColumnDef]="player">
-        <th mat-header-cell *matHeaderCellDef>
-          <span>{{player}}</span>
-          <!--          <mat-icon>edit</mat-icon>-->
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element[player] | numeric}} </td>
-      </ng-container>
+            <ng-container *ngFor="let player of players; let i = index" [matColumnDef]="player">
+              <th mat-header-cell *matHeaderCellDef>
+                <span>{{player}}</span>
+                <!--          <mat-icon>edit</mat-icon>-->
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element[player] | numeric}} </td>
+            </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="cubesDisplayColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: cubesDisplayColumns;"></tr>
-    </table>
-  </mat-card-content>
-</mat-card>
+            <tr mat-header-row *matHeaderRowDef="cubesDisplayColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: cubesDisplayColumns;"></tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
 
-<mat-card>
-  <mat-card-title>Platonic Upgrades</mat-card-title>
-  <mat-card-content>
-    <table mat-table [dataSource]="platonicUpgradesDataSource">
+      <mat-card gdColumn="1 / -1" gdColumn.gt-sm="2 / -2" gdColumn.gt-md="3 / -3">
+        <mat-card-title>Platonic Upgrades</mat-card-title>
+        <mat-card-content>
+          <table mat-table [dataSource]="platonicUpgradesDataSource">
 
-      <ng-container matColumnDef="key">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"> {{element.text}} </td>
-      </ng-container>
+            <ng-container matColumnDef="key">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+            </ng-container>
 
-      <ng-container *ngFor="let player of players; let i = index" [matColumnDef]="player">
-        <th mat-header-cell *matHeaderCellDef>
-          <span>{{player}}</span>
-          <!--          <mat-icon>edit</mat-icon>-->
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element[player] | numeric}} </td>
-      </ng-container>
+            <ng-container *ngFor="let player of players; let i = index" [matColumnDef]="player">
+              <th mat-header-cell *matHeaderCellDef>
+                <span>{{player}}</span>
+                <!--          <mat-icon>edit</mat-icon>-->
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element[player] | numeric}} </td>
+            </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="platonicUpgradesDisplayColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: platonicUpgradesDisplayColumns;"></tr>
-    </table>
-  </mat-card-content>
-</mat-card>
+            <tr mat-header-row *matHeaderRowDef="platonicUpgradesDisplayColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: platonicUpgradesDisplayColumns;"></tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-tab>
+  <mat-tab label="Forge">Forge</mat-tab>
+  <mat-tab label="TBA">TBA</mat-tab>
+</mat-tab-group>

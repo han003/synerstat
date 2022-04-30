@@ -6,28 +6,32 @@
   justify-content: center;
   padding: 24px;
 
-  table {
-    width: 100%;
-    td {
-      word-break: break-word;
+  #stats-container {
+    padding: 16px;
+
+    table {
+      width: 100%;
+      td {
+        word-break: break-word;
+      }
     }
-  }
 
-  #top {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    margin: 16px;
+    #top {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      margin: 16px;
 
-    #import-button {
-      margin-left: 8px;
-      margin-bottom: 1.34375em;
+      #import-button {
+        margin-left: 8px;
+        margin-bottom: 1.34375em;
+      }
     }
-  }
 
-  #table-container {
-    max-width: 90vw;
-    justify-self: center;
-    overflow: auto;
+    #table-container {
+      max-width: 90vw;
+      justify-self: center;
+      overflow: auto;
+    }
   }
 }
