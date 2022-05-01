@@ -1,0 +1,21 @@
+:host {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  padding: 16px;
+
+  img {
+    border-radius: 4px;
+  }
+
+  #actual-forge {
+    margin-top: 32px;
+  }
+
+  #hept-number {
+    margin-top: 24px;
+
+    span {
+      margin: 0;
+    }
+  }
+}

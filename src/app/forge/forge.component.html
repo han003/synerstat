@@ -1,0 +1,28 @@
+<div gdColumn="1 / -1" gdAlignColumns="start center" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
+  <mat-form-field>
+    <mat-label>Current hepteracts</mat-label>
+    <input matInput [value]="_hostSaveData?.hepteracts | numeric:true" readonly autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Current run</mat-label>
+    <input matInput type="number" step="1" min="0" [(ngModel)]="currentRunHept" autocomplete="off">
+  </mat-form-field>
+</div>
+
+<div id="hept-number" gdColumn="1 / -1" gdAlignColumns="start center" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="12px">
+  <img height="48" src="assets/Hepteract.png">
+
+  <span class="mat-display-1">{{(_hostSaveData?.hepteracts || 0) + (currentRunHept || 0) | numeric:true}}</span>
+  <span class="mat-title">hepteracts</span>
+</div>
+
+<div id="actual-forge" gdColumn="3 / -3" gdAlignColumns="start center">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+    <div [matBadge]="forge?.chronos?.tier">
+      <img height="64" src="assets/ChronosHepteract.png">
+    </div>
+
+    <div>test</div>
+  </div>
+</div>

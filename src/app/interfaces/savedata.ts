@@ -1,0 +1,57 @@
+import {ForgeCrafts} from './forge-crafts';
+
+export interface Savedata {
+  achievementPoints: number,
+  achievements: number,
+  constant: number,
+  ascensionSeconds: number,
+  c15exponent: number,
+  challengeCompletions: {
+    11: number,
+    12: number,
+    13: number,
+    14: number,
+    15: number,
+  },
+  cubeBlessings: number,
+  cubeUpgrades: {
+    '5x10': number,
+  },
+  qoldenQuarks: number,
+  hepteractCrafts: Record<ForgeCrafts, {
+    UNLOCKED: boolean,
+    BAL: number,
+    CAP: number,
+    BASE_CAP: number,
+    HEPTERACT_CONVERSION: number,
+  }>,
+  hypercubeBlessings: number,
+  overfluxOrbs: number,
+  overfluxPowder: number,
+  platonicBlessings: number,
+  platonicUpgrades: number,
+  quarksThisSingularity: number,
+  researches: {
+    '8x25': number,
+  },
+  runeBlessingLevels: number,
+  runeSpiritLevels: number,
+  infiniteAscent: number,
+  shopUpgrades: number,
+  singularityCount: number,
+  singularityUpgrades: Record<string, { level: number, gqInvested: number }>,
+  version: string,
+  availableCubes: {
+    cubes: number,
+    tess: number,
+    hypers: number,
+    plats: number,
+  },
+  openedCubes: {
+    cubes: number,
+    tess: number,
+    hypers: number,
+    plats: number,
+  },
+  hepteracts: number,
+}
