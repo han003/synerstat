@@ -5,19 +5,19 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class NumericPipe implements PipeTransform {
   smallFormatter = new Intl.NumberFormat(window.navigator.language, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   });
   mediumFormatter = new Intl.NumberFormat(window.navigator.language, {
     compactDisplay: 'short',
     notation: 'compact',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   });
   bigFormatter = new Intl.NumberFormat(window.navigator.language, {
     notation: 'scientific',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   });
 
   transform(value?: unknown, numberNotation = false, decimals = 0): string {

@@ -90,7 +90,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.import();
+
   }
 
   formatImport(saveImport: Record<string, any>): Record<string, any> {
@@ -127,7 +127,7 @@ export class AppComponent implements OnInit {
       infiniteAscent: saveImport['runelevels'][5],
       shopUpgrades: saveImport['shopUpgrades'],
       singularityCount: saveImport['singularityCount'],
-      singularityUpgrades: Object.entries(saveImport['singularityUpgrades']).reduce((obj: any, entry: any) => {
+      singularityUpgrades: Object.entries(saveImport['singularityUpgrades'] || {}).reduce((obj: any, entry: any) => {
         obj[entry[0]] = {level: entry[1]['level'], gqInvested: entry[1]['goldenQuarksInvested']}
         return obj;
       }, {}),

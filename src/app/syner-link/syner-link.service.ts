@@ -62,8 +62,6 @@ export class SynerLinkService {
   chronosOrOrbs(chronosLevels?: number) {
     let maxChronosLevels = chronosLevels ?? this.getMaxHepteractCraft(this.getTotalHepteracts(), 'chronos');
 
-    console.log(`maxChronosUpgrades`, maxChronosLevels);
-
     let currentPerSecond = this.getAscensionCubes(true);
     let newChronosCapCost = this.getHepteractCraftCost(maxChronosLevels, player.hepteractCrafts.chronos.CAP, player.hepteractCrafts.chronos.HEPTERACT_CONVERSION);
     let orbsForChronosCap = newChronosCapCost / 250000;
@@ -83,8 +81,6 @@ export class SynerLinkService {
 
     let newAcceleration = this.getAscensionTimeAcceleration();
     player.hepteractCrafts.chronos.BAL = originalBalance;
-
-    console.log(currentAcceleration, '-->', newAcceleration, '=', newAcceleration / currentAcceleration);
 
     return {
       chronosPercent: newAcceleration / currentAcceleration,

@@ -1,7 +1,7 @@
 <div gdColumn="1 / -1" gdAlignColumns="start center" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
   <mat-form-field>
-    <mat-label>Chronos levels</mat-label>
-    <input matInput type="number" [(ngModel)]="chronosLevels" min="0" step="1" [max]="maxChronosLevels" autocomplete="off" (ngModelChange)="calcGains()">
+    <mat-label>Chronos levels increase</mat-label>
+    <input matInput type="number" [(ngModel)]="chronosLevels" min="0" step="1" [max]="100" autocomplete="off" (ngModelChange)="calcGains()">
   </mat-form-field>
 </div>
 
