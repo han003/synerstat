@@ -681,32 +681,6 @@ export const blankSave = Object.assign({}, player, {
 });
 
 export const saveSynergy = async (button?: boolean) => {
-    player.offlinetick = Date.now();
-    player.loaded1009 = true;
-    player.loaded1009hotfix1 = true;
-
-    // shallow hold, doesn't modify OG object nor is affected by modifications to OG
-    const p = Object.assign({}, player, {
-        codes: Array.from(player.codes),
-        worlds: Number(player.worlds),
-        wowCubes: Number(player.wowCubes),
-        wowTesseracts: Number(player.wowTesseracts),
-        wowHypercubes: Number(player.wowHypercubes),
-        wowPlatonicCubes: Number(player.wowPlatonicCubes)
-    });
-
-    const save = btoa(JSON.stringify(p));
-    if (save !== null) {
-        const saveBlob = new Blob([save], { type: 'text/plain' });
-        await localforage.setItem<Blob>('Synergysave2', saveBlob);
-        console.log('Saved the game ', Date.now());
-    }
-
-    if (button) {
-        const el = DOMCacheGetOrSet('saveinfo');
-        el.textContent = 'Game saved successfully!';
-        setTimeout(() => el.textContent = '', 4000);
-    }
 }
 
 /**

@@ -492,24 +492,6 @@ DOMCacheGetOrSet('acceleratorBoostHepteract').addEventListener('mouseover', () =
 DOMCacheGetOrSet('multiplierHepteract').addEventListener('mouseover', () => hepteractDescriptions('multiplier'))
 
 
-DOMCacheGetOrSet('chronosHepteractCraft').addEventListener('click', () => player.hepteractCrafts.chronos.craft())
-DOMCacheGetOrSet('hyperrealismHepteractCraft').addEventListener('click', () => player.hepteractCrafts.hyperrealism.craft())
-DOMCacheGetOrSet('quarkHepteractCraft').addEventListener('click', () => player.hepteractCrafts.quark.craft())
-DOMCacheGetOrSet('challengeHepteractCraft').addEventListener('click', () => player.hepteractCrafts.challenge.craft())
-DOMCacheGetOrSet('abyssHepteractCraft').addEventListener('click', () => player.hepteractCrafts.abyss.craft())
-DOMCacheGetOrSet('acceleratorHepteractCraft').addEventListener('click', () => player.hepteractCrafts.accelerator.craft())
-DOMCacheGetOrSet('acceleratorBoostHepteractCraft').addEventListener('click', () => player.hepteractCrafts.acceleratorBoost.craft())
-DOMCacheGetOrSet('multiplierHepteractCraft').addEventListener('click', () => player.hepteractCrafts.multiplier.craft())
-
-DOMCacheGetOrSet('chronosHepteractCraftMax').addEventListener('click', () => player.hepteractCrafts.chronos.craft(true))
-DOMCacheGetOrSet('hyperrealismHepteractCraftMax').addEventListener('click', () => player.hepteractCrafts.hyperrealism.craft(true))
-DOMCacheGetOrSet('quarkHepteractCraftMax').addEventListener('click', () => player.hepteractCrafts.quark.craft(true))
-DOMCacheGetOrSet('challengeHepteractCraftMax').addEventListener('click', () => player.hepteractCrafts.challenge.craft(true))
-DOMCacheGetOrSet('abyssHepteractCraftMax').addEventListener('click', () => player.hepteractCrafts.abyss.craft(true))
-DOMCacheGetOrSet('acceleratorHepteractCraftMax').addEventListener('click', () => player.hepteractCrafts.accelerator.craft(true))
-DOMCacheGetOrSet('acceleratorBoostHepteractCraftMax').addEventListener('click', () => player.hepteractCrafts.acceleratorBoost.craft(true))
-DOMCacheGetOrSet('multiplierHepteractCraftMax').addEventListener('click', () => player.hepteractCrafts.multiplier.craft(true))
-
 DOMCacheGetOrSet('chronosHepteractCap').addEventListener('click', () => player.hepteractCrafts.chronos.expand())
 DOMCacheGetOrSet('hyperrealismHepteractCap').addEventListener('click', () => player.hepteractCrafts.hyperrealism.expand())
 DOMCacheGetOrSet('quarkHepteractCap').addEventListener('click', () => player.hepteractCrafts.quark.expand())

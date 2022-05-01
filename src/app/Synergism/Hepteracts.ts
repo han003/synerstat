@@ -13,7 +13,7 @@ export interface IHepteractCraft {
     UNLOCKED?: boolean,
     BAL?: number,
     CAP?: number,
-    DISCOUNT?: number 
+    DISCOUNT?: number
 }
 
 export const hepteractTypeList = ['chronos', 'hyperrealism', 'quark', 'challenge',
@@ -78,68 +78,8 @@ export class HepteractCraft {
     }
 
     // Add to balance through crafting.
-    craft = async (max = false): Promise<HepteractCraft | void> => {
-        let craftAmount = null;
-        //Prompt used here. Thank you Khafra for the already made code! -Platonic
-        if (!max) {
-            const craftingPrompt = await Prompt('How many would you like to craft?');
-            if (craftingPrompt === null) // Number(null) is 0. Yeah..
-                return Alert('Okay, maybe next time.');
-            craftAmount = Number(craftingPrompt)
-        } else {
-            const craftYesPlz = await Confirm('This will attempt to buy as many as possible. Are you sure?')
-            if (!craftYesPlz) 
-                return Alert('Okay, maybe next time.');
-            craftAmount = this.CAP
-        }
-
-        //Check these lol
-        if (Number.isNaN(craftAmount) || !Number.isFinite(craftAmount)) // nan + Infinity checks
-            return Alert('Value must be a finite number!');
-        else if (craftAmount <= 0) // 0 or less selected
-            return Alert('You can\'t craft a nonpositive amount of these, you monster!');
-
-        // If craft is unlocked, we return object
-        if (!this.UNLOCKED) 
-            return Alert('This is not an unlocked craft, thus you cannot craft this item!');
-
-        // Calculate the largest craft amount possible, with an upper limit being craftAmount
-        const hepteractLimit = Math.floor((player.wowAbyssals / this.HEPTERACT_CONVERSION) * 1 / (1 - this.DISCOUNT))
-
-        // Create an array of how many we can craft using our conversion limits for additional items
-        const itemLimits: number[] = []
-        for (const item in this.OTHER_CONVERSIONS) {
-            // The type of player[item] is number | Decimal | Cube.
-            itemLimits.push(Math.floor((player[item as keyof Player] as number) / this.OTHER_CONVERSIONS[item as keyof Player]!) * 1 / (1 - this.DISCOUNT))
-        }
-
-        // Get the smallest of the array we created
-        const smallestItemLimit = Math.min(...itemLimits)
-
-        // Get the smallest of hepteract limit, limit found above and specified input
-        const amountToCraft = Math.min(smallestItemLimit, hepteractLimit, craftAmount, this.CAP - this.BAL)
-        this.BAL += amountToCraft
-
-        // Subtract spent items from player
-        player.wowAbyssals -= amountToCraft * this.HEPTERACT_CONVERSION;
-
-        if (player.wowAbyssals < 0) {
-            player.wowAbyssals = 0;
-        }
-
-        for (const item in this.OTHER_CONVERSIONS) {
-            if (typeof player[item as keyof Player] === 'number')
-                (player[item as keyof Player] as number) -= amountToCraft * this.OTHER_CONVERSIONS[item as keyof Player]!;
-
-                if ((player[item as keyof Player] as number) < 0) {
-                    (player[item as keyof Player] as number) = 0;
-                }
-            else if (player[item as keyof Player] instanceof Cube)
-                (player[item as keyof Player] as Cube).sub(amountToCraft * this.OTHER_CONVERSIONS[item as keyof Player]!);
-            else if (item == 'worlds')
-                player.worlds.sub(amountToCraft * this.OTHER_CONVERSIONS[item]!)
-        }
-        return Alert('You have successfully crafted ' + format(amountToCraft, 0, true) + ' hepteracts.' + (max ? '' : ' If this is less than your input, you either hit the inventory limit or you had insufficient resources.'));
+    craft = (value: number, max = false) => {
+      this.BAL += max ? this.CAP : value;
     }
 
     // Reduce balance through spending
@@ -155,22 +95,10 @@ export class HepteractCraft {
     /**
      * Expansion can only happen if your current balance is full.
      */
-    expand = async(): Promise<HepteractCraft | void> => {
-        const expandPrompt = await Confirm('This will empty your balance, but double your capacity. Agree to the terms and conditions and stuff?')
-        if (!expandPrompt) {
-            return this;
-        }
-        if (!this.UNLOCKED)
-            return Alert('This is not an unlocked craft. Sorry!');
-
-        // Below capacity
-        if (this.BAL < this.CAP)
-            return Alert('Insufficient inventory to expand. 404 909 error.');
-        
+    expand = (): void => {
         // Empties inventory in exchange for doubling maximum capacity.
         this.BAL = 0
         this.CAP *= 2
-        return Alert('Successfully expanded your inventory. You can now fit ' + format(this.CAP, 0, true) + '.');
     }
 
     // Add some percentage points to your discount
@@ -199,7 +127,7 @@ export class HepteractCraft {
     get discount() {
         return this.DISCOUNT
     }
-    
+
 }
 
 const hepteractEffectiveValues = {
@@ -354,7 +282,7 @@ export const tradeHepteractToOverfluxOrb = async () => {
         toUse <= 0
     )
         return Alert(`Hey! That's not a valid number!`);
-    
+
     const buyAmount = Math.min(maxBuy, toUse)
     const beforeEffect = calculateCubeQuarkMultiplier();
     player.overfluxOrbs += buyAmount
@@ -371,7 +299,7 @@ export const tradeHepteractToOverfluxOrb = async () => {
 export const overfluxPowderDescription = () => {
     let powderEffectText = "ALL Cube Gain +" + format(100 * (calculateCubeMultFromPowder() - 1), 2, true) + "% [Multiplicative], +" + format(100 * (calculateQuarkMultFromPowder() - 1), 3, true) + "% Quarks [Multiplicative]"
     if (player.platonicUpgrades[16] > 0)
-        powderEffectText += ", Ascension Count +" + format(2 * player.platonicUpgrades[16] * Math.min(1, player.overfluxPowder / 1e5), 2, true) + "%, " + "Tesseract Building Production x" + format(Decimal.pow(player.overfluxPowder + 1, 10 * player.platonicUpgrades[16])) + " [From Platonic Upgrade 4x1]" 
+        powderEffectText += ", Ascension Count +" + format(2 * player.platonicUpgrades[16] * Math.min(1, player.overfluxPowder / 1e5), 2, true) + "%, " + "Tesseract Building Production x" + format(Decimal.pow(player.overfluxPowder + 1, 10 * player.platonicUpgrades[16])) + " [From Platonic Upgrade 4x1]"
     DOMCacheGetOrSet('hepteractUnlockedText').style.display = 'none'
     DOMCacheGetOrSet('hepteractCurrentEffectText').textContent = "Powder effect: " + powderEffectText
     DOMCacheGetOrSet('hepteractBalanceText').textContent = 'You have ' + format(player.overfluxPowder, 2, true) + ' lumps of Overflux Powder.'
@@ -425,13 +353,13 @@ export const QuarkHepteract = new HepteractCraft({
     HEPTERACT_CONVERSION: 1e4,
     OTHER_CONVERSIONS: {'worlds': 100},
     UNLOCKED: true
-}); 
+});
 
 // Hepteract of Challenge [LOCKED]
 export const ChallengeHepteract = new HepteractCraft({
     BASE_CAP: 1000,
     HEPTERACT_CONVERSION: 5e4,
-    OTHER_CONVERSIONS: {'wowPlatonicCubes': 1e11, 'wowCubes': 1e22} 
+    OTHER_CONVERSIONS: {'wowPlatonicCubes': 1e11, 'wowCubes': 1e22}
 });
 
 // Hepteract of The Abyssal [LOCKED]

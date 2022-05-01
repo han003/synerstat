@@ -1,6 +1,7 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Savedata} from '../interfaces/savedata';
 import {ForgeCrafts} from '../interfaces/forge-crafts';
+import {SynerLinkService} from '../syner-link/syner-link.service';
 
 type Forge = Record<ForgeCrafts, {balance: number, baseCap: number, tier: number, cap: number, conversion: number, unlocked: boolean}>;
 
@@ -12,46 +13,31 @@ type Forge = Record<ForgeCrafts, {balance: number, baseCap: number, tier: number
 export class ForgeComponent implements OnInit {
   @Input() set hostSavedata(value: Savedata) {
     this._hostSaveData = value;
-    this.constructForge(value);
   };
 
   _hostSaveData?: Savedata;
-  currentRunHept?: number = 0;
   forge?: Forge;
+  maxChronosLevels = this.synerLink.getMaxHepteractCraft(this.synerLink.getTotalHepteracts(), 'chronos');
+  chronosLevels = this.maxChronosLevels;
+  hepteracts = this.synerLink.getTotalHepteracts();
+  powderGains = 0;
+  orbsForGains = 0;
+  powderForGains = 0;
+  chronosGains = 0;
+  orbConversion = this.synerLink.getOrbsPerPowder();
 
-  constructor() { }
+  constructor(private synerLink: SynerLinkService) { }
 
   ngOnInit(): void {
+    this.calcGains();
   }
 
-  constructForge(value: Savedata) {
-    let crafts: ForgeCrafts[] = ['abyss', 'accelerator', 'acceleratorBoost', 'challenge', 'chronos', 'hyperrealism', 'multiplier', 'quark'];
+  calcGains() {
+    let result = this.synerLink.chronosOrOrbs(this.chronosLevels);
 
-    this.forge = crafts.reduce((obj, craft) => {
-      obj[craft] = {
-        balance: value.hepteractCrafts[craft].BAL,
-        baseCap: value.hepteractCrafts[craft].BASE_CAP,
-        tier: this.calcTier(value.hepteractCrafts[craft].BASE_CAP, value.hepteractCrafts[craft].CAP),
-        cap: value.hepteractCrafts[craft].CAP,
-        conversion: value.hepteractCrafts[craft].HEPTERACT_CONVERSION,
-        unlocked: value.hepteractCrafts[craft].UNLOCKED,
-      }
-
-      return obj;
-    }, {} as Forge);
-
-    console.log(`this.forge`, this.forge);
-  }
-
-  private calcTier(baseCap: number, currentCap: number) {
-    let tier = 1;
-    let cap = baseCap;
-
-    while (cap !== currentCap) {
-      tier++;
-      cap = cap * 2;
-    }
-
-    return tier;
+    this.powderGains = result.powderPercent;
+    this.chronosGains = result.chronosPercent;
+    this.orbsForGains = result.orbs;
+    this.powderForGains = result.powder;
   }
 }
