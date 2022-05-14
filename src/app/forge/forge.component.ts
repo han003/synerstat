@@ -13,20 +13,23 @@ type Forge = Record<ForgeCrafts, {balance: number, baseCap: number, tier: number
 export class ForgeComponent implements OnInit {
   @Input() set hostSavedata(value: Savedata) {
     this._hostSaveData = value;
+
+    this.maxChronosLevels = this.synerLink.getMaxHepteractCraft(this.synerLink.getTotalHepteracts(), 'chronos');
+    this.orbConversion = this.synerLink.getOrbsPerPowder();
+    this.calcGains();
   };
 
   _hostSaveData?: Savedata;
   forge?: Forge;
   maxChronosLevels = this.synerLink.getMaxHepteractCraft(this.synerLink.getTotalHepteracts(), 'chronos');
   chronosLevels = this.maxChronosLevels;
-  hepteracts = this.synerLink.getTotalHepteracts();
   powderGains = 0;
   orbsForGains = 0;
   powderForGains = 0;
   chronosGains = 0;
   orbConversion = this.synerLink.getOrbsPerPowder();
 
-  constructor(private synerLink: SynerLinkService) { }
+  constructor(public synerLink: SynerLinkService) { }
 
   ngOnInit(): void {
     this.calcGains();

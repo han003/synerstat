@@ -1,0 +1,18 @@
+<div fxLayout="row" fxLayoutGap="12px">
+  <mat-form-field>
+    <mat-label>Singularity</mat-label>
+    <input matInput [formControl]="singularity" type="number" min="0" step="1" autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Quarks this singularity</mat-label>
+    <input matInput [formControl]="quarksThisSingularity" type="number" min="0" step="1" autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>C15 exponent</mat-label>
+    <input matInput [formControl]="c15Expo" type="number" min="0" step="1" autocomplete="off">
+  </mat-form-field>
+</div>
+
+<div class="mat-h4">{{goldenQuarks | numeric}}</div>

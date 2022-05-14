@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexModule, GridModule} from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -18,12 +18,16 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ForgeComponent } from './forge/forge.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { GoldenQuarksComponent } from './golden-quarks/golden-quarks.component';
+import { ProgressChartComponent } from './progress-chart/progress-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NumericPipe,
-    ForgeComponent
+    ForgeComponent,
+    GoldenQuarksComponent,
+    ProgressChartComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatSnackBarModule,
     MatTabsModule,
     MatBadgeModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
