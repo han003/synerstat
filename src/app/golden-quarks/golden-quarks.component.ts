@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SynerLinkService} from '../syner-link/syner-link.service';
 import {player} from '../Synergism/Synergism';
 import {FormControl} from '@angular/forms';
